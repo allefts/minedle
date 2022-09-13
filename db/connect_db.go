@@ -56,7 +56,7 @@ func GetItemDB(dbConnection *mongo.Client) (primitive.M, error) {
 
 	itemMap := item.Map()
 
-	//Check that is craftable item and if the item has already been used once
+	//Check that is craftable item
 	for itemMap["type"] == "minecraft:smelting" || itemMap["type"] == "minecraft:smithing" {
 		itemMap, _ = GetItemDB(dbConnection)
 	}

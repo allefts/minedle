@@ -41,7 +41,7 @@ func HandleItem() (primitive.M, error) {
 
 func checkTime(prevTime *time.Time, currTime time.Time) bool {
 	timeDiff := prevTime.Sub(currTime)
-	if timeDiff.Abs().Hours() > 24 {
+	if timeDiff.Abs().Hours() > 1 {
 		*prevTime = time.Now()
 		return true
 	}
