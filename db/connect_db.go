@@ -39,7 +39,7 @@ func connectDB() *mongo.Client {
 // GetItemDB DBGetItem Should just return the collection but its easy enough to write everything here
 // Grabs an item and returns it as a Map
 func GetItemDB(dbConnection *mongo.Client) (primitive.M, error) {
-	coll := dbConnection.Database("MinecraftItems").Collection("Items")
+	coll := dbConnection.Database("craftable-items").Collection("items")
 	pipeline := []primitive.D{{{Key: "$sample", Value: primitive.D{{Key: "size", Value: 1}}}}}
 	cursor, err := coll.Aggregate(context.TODO(), pipeline)
 	if err != nil {
