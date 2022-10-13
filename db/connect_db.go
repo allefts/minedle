@@ -64,6 +64,29 @@ func GetItemDB(dbConnection *mongo.Client) (primitive.M, error) {
 	return itemMap, nil
 }
 
+// Should get the 27 items that will go inside the inventory, within those items we need to ensure we have the ingredients/key items needed to craft the CurrentItem
+// func GetRandomItems(dbConnection *mongo.Client) ([]primitive.M, error) {
+// 	coll := dbConnection.Database("craftable-items").Collection("items")
+// 	pipeline := []primitive.D{{{Key: "$sample", Value: primitive.D{{Key: "size", Value: 27}}}}}
+// 	cursor, err := coll.Aggregate(context.TODO(), pipeline)
+// 	if err != nil {
+// 		return []primitive.M{}, err
+// 	}
+
+// 	var item primitive.D
+// 	var invItems []primitive.M
+// 	for cursor.Next(context.TODO()) {
+// 		err = cursor.Decode(&item)
+// 		invItems = append(invItems, item.Map())
+// 		if err != nil {
+// 			return []primitive.M{}, err
+// 		}
+
+// 	}
+
+// 	return nil, nil
+// }
+
 func GetNumOfDocuments(dbConnection *mongo.Client) int64 {
 	coll := dbConnection.Database("MinecraftItems").Collection("Items")
 	estCount, err := coll.EstimatedDocumentCount(context.TODO())

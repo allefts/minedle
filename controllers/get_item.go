@@ -36,6 +36,9 @@ func HandleItem() (primitive.M, error) {
 		//Keep same item
 		item = CurrentItem
 	}
+
+	// fmt.Println(CurrentItem)
+
 	return item, nil
 }
 
